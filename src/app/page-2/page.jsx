@@ -1,5 +1,5 @@
 import Header from "../components/header";
-import Footer from "../components/footer";
+import Footer2 from "../components/footer2";
 import Body2 from "../components/body2";
 
 export default function Page2() {
@@ -7,7 +7,7 @@ export default function Page2() {
       <div>
         <Header/>
         <Body2/>
-        <Footer/>
+        <Footer2/>
       </div>
     );
   }

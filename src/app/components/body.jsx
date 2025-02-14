@@ -2,71 +2,55 @@
 import React, { useState, useEffect } from "react";
 import ReactSpeedometer from "react-d3-speedometer";
 import { GiFire, GiWaterDrop } from "react-icons/gi";
-import axios from "axios";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function body() {
 
+    const [monitoringRoom, setMonitoringRoom] = useState({ temp: 0, humd: 0 });
     const [qcData, setQcData] = useState({ onSpec: 0, offSpec: 0, weigher: 0 });
     const [weigherData1, setWeigherData1] = useState({ lpv: 0, sv: 0 });
     const [weigherData2, setWeigherData2] = useState({ lpv: 0, sv: 0 });
     const [airPressure, setPressure] = useState(0);
 
-    // SSE untuk QC Data
-    useEffect(() => {
-        const eventSource = new EventSource(`${API_URL}/api/qc`); // Pastikan endpoint SSE benar
+    const useSSE = (url, setData, transformData) => {
+        useEffect(() => {
+            const eventSource = new EventSource(`${API_URL}${url}`);
 
-        eventSource.onmessage = (event) => {
-            try {
-                const data = JSON.parse(event.data);
-                setQcData({
-                    onSpec: data?.status_counts?.onspec || 0,
-                    offSpec: data?.status_counts?.offspec || 0,
-                    weigher: data?.latest_weigher?.weigher || 0,
-                });
-            } catch (error) {
-                console.error("Error parsing SSE data:", error);
-            }
-        };
+            eventSource.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    setData(transformData(data));
+                } catch (error) {
+                    console.error(`Error parsing SSE data from ${url}:`, error);
+                }
+            };
 
-        eventSource.onerror = () => {
-            console.error("SSE connection error, closing connection.");
-            eventSource.close();
-        };
+            eventSource.onerror = () => {
+                console.error(`SSE connection error for ${url}, closing connection.`);
+                eventSource.close();
+            };
 
-        return () => {
-            eventSource.close();
-        };
-    }, []);
+            return () => {
+                eventSource.close();
+            };
+        }, []);
+    };
 
-    // Polling untuk data lainnya
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const pressureResponse = await axios.get(`${API_URL}/api/hopperairpressure`);
-                const weigherResponse1 = await axios.get(`${API_URL}/api/hopperweigher1`);
-                const weigherResponse2 = await axios.get(`${API_URL}/api/hopperweigher2`);
+    useSSE("/api/qc", setQcData, (data) => ({
+        onSpec: data?.status_counts?.onspec || 0,
+        offSpec: data?.status_counts?.offspec || 0,
+        weigher: data?.latest_weigher?.weigher || 0
+    }));
 
-                setWeigherData1({
-                    lpv: weigherResponse1.data?.lpvweigher1 || 0,
-                    sv: weigherResponse1.data?.svweigher1 || 0
-                });
+    useSSE("/api/monitoringroom", setMonitoringRoom, (data) => ({
+        temp: data?.temp || 0,
+        humd: data?.humd || 0
+    }));
 
-                setWeigherData2({
-                    lpv: weigherResponse2.data?.lpvweigher2 || 0,
-                    sv: weigherResponse2.data?.svweigher2 || 0
-                });
-
-                setPressure(pressureResponse.data?.pressure || 0);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-        const interval = setInterval(fetchData, 1000);
-        return () => clearInterval(interval);
-    }, [API_URL]);
+    useSSE("/api/hopperairpressure", setPressure, (data) => data?.pressure || 0);
+    useSSE("/api/hopperweigher1", setWeigherData1, (data) => ({ lpv: data?.lpvweigher1 || 0, sv: data?.svweigher1 || 0 }));
+    useSSE("/api/hopperweigher2", setWeigherData2, (data) => ({ lpv: data?.lpvweigher2 || 0, sv: data?.svweigher2 || 0 }));
 
     return (
     <div className="custom-height bg-blue py-1 relative">
@@ -79,11 +63,11 @@ export default function body() {
                         <div className="col-start-1 flex flex-col items-center space-y-2">
                             <div className="flex items-center">
                                 <GiFire className="text-orange-500 text-3xl" />
-                                <span className="text-white font-medium ml-2">-88.8°C</span>
+                                <span className="text-white font-medium ml-2">{monitoringRoom.temp}°C</span>
                             </div>
                             <div className="flex items-center">
                                 <GiWaterDrop className="text-blue-500 text-3xl" />
-                                <span className="text-white font-medium ml-2">-88.8%</span>
+                                <span className="text-white font-medium ml-2">{monitoringRoom.humd}%</span>
                             </div>
                         </div>
                         <div className="col-start-2 flex flex-col items-center">
@@ -131,7 +115,7 @@ export default function body() {
         <div className="custom-placing absolute mt-3 z-99">
             <ReactSpeedometer 
             maxValue={200} 
-            value={120} 
+            value={34} 
             needleColor="red" 
             startColor="green" 
             segments={10}
@@ -177,7 +161,7 @@ export default function body() {
                     PV: <span className="text-green-400 font-bold">{weigherData1.lpv}</span> Kg
                 </p>
                 <p className="text-lg">
-                    SV: <span className="text-red-500 font-bold">{weigherData1.lpv}</span> Kg
+                    SV: <span className="text-red-500 font-bold">{weigherData1.sv}</span> Kg
                 </p>
             </div>
         </div>

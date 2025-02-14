@@ -1,19 +1,70 @@
+"use client";
+import React, { useState, useEffect } from "react";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Body2() {
 
-    const pressure = 2;
-    let status = "NORMAL";
-    let statusColor = "text-yellow-500";
-    let boxColor = "bg-gray-500";
+    const [authorized, setAuthorized] = useState(false);
+  const [variableCtq1, setVariableCtq1] = useState({ pressure: 0, status: "NORMAL" });
+  const [variableCtq2, setVariableCtq2] = useState({ gatevalve: 0, status: "NORMAL" });
+  const [variableCtq3, setVariableCtq3] = useState({ predictedWeight: 0, offspec: 0, onspec: 0 });
 
-    if (pressure < 60) {
-        status = "LOW";
-        statusColor = "text-green-500";
-        boxColor = "bg-green-500";
-    } else if (pressure > 90) {
-        status = "OVER";
-        statusColor = "text-red-500";
-        boxColor = "bg-red-500";
+  useEffect(() => {
+    const hasPredicted = sessionStorage.getItem("predicted");
+    if (!hasPredicted) {
+      window.location.href = "/";
+    } else {
+      setAuthorized(true);
+      sessionStorage.removeItem("predicted");
     }
+  }, []);
+
+  const useSSE = (url, setData, thresholdLow, thresholdHigh) => {
+    useEffect(() => {
+      if (!authorized) return;
+      
+      const eventSource = new EventSource(`${API_URL}${url}`);
+  
+      eventSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (url === "/api/variablectq1") {
+            const pressure = data?.pressure || 0;
+            const status = pressure < thresholdLow ? "LOW" : pressure > thresholdHigh ? "OVER" : "NORMAL";
+            setData({ pressure, status });
+          } else if (url === "/api/variablectq2") {
+            const gatevalve = data?.gatevalve || 0;
+            const status = gatevalve < thresholdLow ? "LOW" : gatevalve > thresholdHigh ? "OVER" : "NORMAL";
+            setData({ gatevalve, status });
+          } else if (url === "/api/variablectq3") {
+            const predictedWeight = data?.predicted_weight?.predicted_weight || 0;
+            const offspec = data?.status_counts?.offspec || 0;
+            const onspec = data?.status_counts?.onspec || 0;
+            const statusSpec = data?.predicted_weight?.status === "ONSPEC" ? "ONSPEC" : "OFFSPEC";
+            setData({ predictedWeight, offspec, onspec, statusSpec });
+          }
+        } catch (error) {
+          console.error(`Error parsing SSE data from ${url}:`, error);
+        }
+      };
+  
+      eventSource.onerror = () => {
+        console.error(`SSE connection error for ${url}, closing connection.`);
+        eventSource.close();
+      };
+  
+      return () => {
+        eventSource.close();
+      };
+    }, [authorized]);
+  };
+  
+  useSSE("/api/variablectq1", setVariableCtq1, 9, 10);
+  useSSE("/api/variablectq2", setVariableCtq2, 0.04, 0.05);
+  useSSE("/api/variablectq3", setVariableCtq3, 40, 80);
+
+  if (!authorized) return null;
 
     return (
     <div className="custom-height bg-blue py-1 relative">
@@ -31,30 +82,24 @@ export default function Body2() {
             <div className="flex-1 text-gray-800">
                 <h2 className="text-sm font-bold text-center">Variable CTQ</h2>
                 <div className="bg-gray-800 p-1 rounded-sm mt-2 flex flex-col items-center">
-                    <div className="text-sm font-bold text-green-400">{pressure} Psi</div>
+                    <div className="text-sm font-bold text-green-400">{variableCtq1.pressure} Psi</div>
                 </div>
                 <div className="flex justify-around mt-4">
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${
-                        status === "LOW" ? "bg-green-500" : "bg-gray-500"
-                    }`}
+                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-green-700 text-sm font-semibold">LOW</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${
-                        status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"
-                    }`}
+                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-yellow-700 text-sm font-semibold">NORMAL</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${
-                        status === "OVER" ? "bg-red-500" : "bg-gray-500"
-                    }`}
+                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-red-700 text-sm font-semibold">OVER</span>
                     </div>
@@ -66,30 +111,24 @@ export default function Body2() {
             <div className="flex-1 text-gray-800">
                 <h2 className="text-sm font-bold text-center">Variable CTQ</h2>
                 <div className="bg-gray-800 p-1 rounded-sm mt-2 flex flex-col items-center">
-                    <div className="text-sm font-bold text-green-400">{pressure} Psi</div>
+                    <div className="text-sm font-bold text-green-400">{variableCtq2.gatevalve} Psi</div>
                 </div>
                 <div className="flex justify-around mt-4">
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${
-                        status === "LOW" ? "bg-green-500" : "bg-gray-500"
-                    }`}
+                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-green-700 text-sm font-semibold">LOW</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${
-                        status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"
-                    }`}
+                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-yellow-700 text-sm font-semibold">NORMAL</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${
-                        status === "OVER" ? "bg-red-500" : "bg-gray-500"
-                    }`}
+                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-red-700 text-sm font-semibold">OVER</span>
                     </div>
@@ -99,21 +138,21 @@ export default function Body2() {
         <div className="absolute w-60 p-2 gray-custom border border-white text-gray-800" style={{ bottom: "30%", right: "10%" }}>
             <h2 className="text-lg font-bold text-center">Variable CTQ</h2>
             <div className="bg-gray-800  p-3 rounded-sm mt-2 flex flex-col items-center">
-                <div className="text-2xl font-bold text-green-400">{pressure} kg</div>
+                <div className="text-2xl font-bold text-green-400">{variableCtq3.predictedWeight} kg</div>
             </div>
             <div className="flex justify-between mt-3 px-2 text-sm">
                 <div className="flex items-center">
-                <div className="w-4 h-4 bg-green-500 border border-white mr-2"></div>
+                <div className={`w-4 h-4 border border-white mr-2 ${variableCtq3.statusSpec === "ONSPEC" ? "bg-green-500" : "bg-gray-500"}`}></div>
                 <span className="font-semibold text-green-600">ONSPEC</span>
                 </div>
                 <div className="flex items-center">
-                <div className="w-4 h-4 bg-red-500 border border-white mr-2"></div>
+                <div className={`w-4 h-4 border border-white mr-2 ${variableCtq3.statusSpec === "OFFSPEC" ? "bg-red-500" : "bg-gray-500"}`}></div>
                 <span className="font-semibold text-red-600">OFFSPEC</span>
                 </div>
             </div>
             <div className="mt-2 text-sm text-gray-800">
-                <p>On Spec: <span className="font-bold">888 bag</span></p>
-                <p>Off Spec: <span className="font-bold">888 bag</span></p>
+                <p>On Spec: <span className="font-bold">{variableCtq3.onspec} bag</span></p>
+                <p>Off Spec: <span className="font-bold">{variableCtq3.offspec} bag</span></p>
             </div>
         </div>
         <div className="conveyor-check absolute z-20" style={{ bottom: '15%', right: '2%' }}>
