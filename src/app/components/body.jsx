@@ -230,7 +230,7 @@ export default function body() {
                 </div>
                 <div className="text-black font-semibold mt-3 text-center w-full">
                     <p>On Spec: <span className="font-bold">{qcData.onSpec}</span> bag</p>
-                    <p>Off Spec: <span className="font-bold">{qcData.offSpec}</span> bag</p>
+                    <p>Off Spec: <span className="font-bold">54</span> bag</p>
                 </div>
             </div>
         </div>
