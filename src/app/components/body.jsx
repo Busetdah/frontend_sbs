@@ -112,14 +112,16 @@ export default function body() {
         {/* <div className="absolute line-1">
             <div className="garis-1-1"></div>
         </div> */}
-        <div className="custom-placing absolute mt-3 z-99">
+        <div className="custom-placing absolute mt-8 z-99">
             <ReactSpeedometer 
-            maxValue={200} 
+            maxValue={150} 
             value={34} 
             needleColor="red" 
             startColor="green" 
             segments={10}
             endColor="red"
+            width={250}
+            height={100}
             />
         </div>
         <div className="conveyor-translator absolute z-20" style={{ top: '17%', left: '20%' }}>
@@ -138,7 +140,7 @@ export default function body() {
             </div>
         </div>
         <div className="flex absolute motor-2379 items-center w-fit">
-            <img src="/motor.png" className="w-10 h-10 object-cover" />
+            <img src="/motor.png" className="custom-motor-height object-cover" />
             <div className="ml-2 flex flex-col">
                 <span className="text-white font-bold text-lg">M2379</span>
                 <span className="text-green-400 font-semibold text-lg">88.8 A</span>
@@ -152,7 +154,7 @@ export default function body() {
                     <span className="text-white font-semibold"> psi</span>
                 </span>
             </div>
-            <img src="/hopper.png" className="absolute custom-hopper w-52 h-72 mt-4"></img>
+            <img src="/hopper.png" className="absolute custom-hopper mt-4"></img>
         </div>
         <div className="absolute bg-white rounded-lg shadow-md p-2 text-center" style={{ top: '30%', left: '22%', }}>
             <p className="text-black font-bold text-sm">WEIGHER BUCKET 1</p>
@@ -176,7 +178,7 @@ export default function body() {
                 </p>
             </div>
         </div>
-        <div className="absolute" style={{ top: '50%', left: '22%' }}>
+        <div className="absolute" style={{ top: '43vh', left: '22%' }}>
             <div className="text-white text-sm font-bold py-1 text-center">
                 SEWING MACHINE
             </div>
@@ -195,7 +197,7 @@ export default function body() {
                 </div>
             </div>
         </div>
-        <div className="absolute flex flex-col justify-center" style={{ top: '50%', left: '35%' }}>
+        <div className="absolute flex flex-col justify-center" style={{ top: '43vh', left: '35%' }}>
             <div className="text-white text-sm font-bold py-1 text-center">
                 EARLY WARNING SYSTEM (EWS)
             </div>
@@ -214,7 +216,7 @@ export default function body() {
                 </div>
             </div>
         </div>
-        <div className="absolute text-center" style={{ top: '40%', right: '30%' }}>
+        <div className="absolute text-center" style={{ top: '35vh', right: '30%' }}>
             <span className="text-white text-sm font-bold py-1 text-center block">Quality Check</span>
             <div className="bg-white shadow-md gray-custom p-3 flex flex-col items-center">
                 <div className="flex items-center">
@@ -234,7 +236,7 @@ export default function body() {
                 </div>
             </div>
         </div>
-        <div className="absolute gray-custom shadow-md p-3 text-center" style={{ top: '44%', right: '5%' }}>
+        <div className="absolute gray-custom shadow-md p-1 text-center" style={{ top: '40vh', right: '5%' }}>
             <div className="bg-black text-white px-3 py-2">
                 <p className="text-sm font-bold">COUNTER TOTAL</p>
                 <p className="text-green-400 text-lg font-bold">88888 bag</p>
@@ -305,28 +307,28 @@ export default function body() {
             </div>
         </div>
         <div className="flex absolute motor-m712d_1 items-center w-fit">
-            <img src="/motor.png" className="w-10 h-10 object-cover" />
+            <img src="/motor.png" className="custom-motor-height object-cover" />
             <div className="ml-2 flex flex-col">
                 <span className="text-white font-bold text-lg">M712D_1</span>
                 <span className="text-green-400 font-semibold text-lg">88.8 A</span>
             </div>
         </div>
         <div className="flex absolute motor-m712d_2 items-center w-fit">
-            <img src="/motor.png" className="w-10 h-10 object-cover" />
+            <img src="/motor.png" className="custom-motor-height object-cover" />
             <div className="ml-2 flex flex-col">
                 <span className="text-white font-bold text-lg">M712D_2</span>
                 <span className="text-green-400 font-semibold text-lg">88.8 A</span>
             </div>
         </div>
         <div className="flex absolute motor-m713d items-center w-fit">
-            <img src="/motor.png" className="w-10 h-10 object-cover" />
+            <img src="/motor.png" className="custom-motor-height object-cover" />
             <div className="ml-2 flex flex-col">
                 <span className="text-white font-bold text-lg">M713D</span>
                 <span className="text-green-400 font-semibold text-lg">88.8 A</span>
             </div>
         </div>
         <div className="flex absolute motor-m714d items-center w-fit">
-            <img src="/motor.png" className="w-10 h-10 object-cover" />
+            <img src="/motor.png" className="custom-motor-height object-cover" />
             <div className="ml-2 flex flex-col">
                 <span className="text-white font-bold text-lg">M714D</span>
                 <span className="text-green-400 font-semibold text-lg">88.8 A</span>

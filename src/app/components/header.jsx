@@ -30,7 +30,7 @@ export default function Header() {
     }, []);
 
     return (
-        <div className="bg-grey text-white">
+        <div className="bg-grey custom-height-header text-white">
             <div className="flex items-center justify-between px-4 py-1/2">
                 <div className="flex items-center space-x-4">
                     <img src="/PetroLogo.png" className="h-16 w-auto" />

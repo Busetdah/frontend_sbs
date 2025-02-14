@@ -22,10 +22,18 @@
   position: relative;
 }
 
+.footer-height{
+  height: 7vh;
+}
+
+.custom-height-header{
+  height: 13vh;
+}
+
 .conveyor-belt {
   position: absolute;
-  width: 500px;
-  height: 30px;
+  width: 27vw;
+  height: 4.3vh;
   background: #374151;
   border-radius: 40px;
   overflow: hidden;
@@ -34,8 +42,8 @@
 
 .conveyor-translator {
   position: absolute;
-  width: 700px;
-  height: 30px;
+  width: 40vw;
+  height: 4.3vh;
   background: #374151;
   border-radius: 40px;
   overflow: hidden;
@@ -44,8 +52,8 @@
 
 .conveyor-closing {
   position: absolute;
-  width: 400px;
-  height: 30px;
+  width: 25vw;
+  height: 4.3vh;
   background: #374151;
   border-radius: 40px;
   overflow: hidden;
@@ -54,8 +62,8 @@
 
 .conveyor-bag {
   position: absolute;
-  width: 300px;
-  height: 30px;
+  width: 18.5vw;
+  height: 4.3vh;
   background: #374151;
   border-radius: 40px;
   overflow: hidden;
@@ -64,8 +72,8 @@
 
 .conveyor-check {
   position: absolute;
-  width: 400px;
-  height: 30px;
+  width: 25.5vw;
+  height: 4.3vh;
   background: #374151;
   border-radius: 40px;
   overflow: hidden;
@@ -74,8 +82,8 @@
 
 .conveyor-incline {
   position: absolute;
-  width: 320px;
-  height: 30px;
+  width: 21vw;
+  height: 4.3vh;
   background: #374151;
   border-radius: 40px;
   overflow: hidden;
@@ -84,8 +92,8 @@
 
 .wheel {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: min(3.15vw, 3.15vh);
+  height: min(3.15vw, 3.15vh);
   background: #374151;
   border: 4px solid white;
   border-radius: 50%;
@@ -95,20 +103,20 @@
 }
 
 .inner-wheel {
-  width: 10px;
-  height: 10px;
+  width: min(2.15vw, 2.15vh);
+  height: min(2.15vw, 2.15vh);
   background: #111827;
   border-radius: 50%;
 }
 
 .left-wheel {
-  left: 5px;
-  top: 4px;
+  left: 0.2vw;
+  top: 0.45vh;
 }
 
 .right-wheel {
-  right: 5px;
-  top: 4px;
+  right: 0.2vw;
+  top: 0.45vh;
 }
 
 .plus-sign {
@@ -116,8 +124,8 @@
   font-size: 25px;
   font-weight: bold;
   position: absolute;
-  top: 20%;
-  left: 51%;
+  top: 33%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -140,9 +148,8 @@
 }
 
 .custom-placing{
-  width: 6vw;
-  top: 60px;
-  right: 15%;
+  top: 8vh;
+  right: 3vw;
 }
 
 .rotateUp{
@@ -151,8 +158,8 @@
 
 .motor-2379{
   width: 30px;
-  top: 24%;
-  right: 35%;
+  top: 20vh;
+  left: 54vw;
 }
 
 .motor-m712d_1{
@@ -180,7 +187,10 @@
 }
 
 .custom-hopper{
-  left: 6%;
+  left: 5.5vw;
+  top: 18vh;
+  width: 15vw;
+  height: 40vh;
 }
 
 .hopper-detail{
@@ -194,9 +204,6 @@
   border: 2px solid #e0e0e0;
 }
 
-.footer-height{
-  height: 7.2vh;
-}
 
 button{
   background: #c4c4c4;
