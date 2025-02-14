@@ -11,8 +11,8 @@ export default function Footer() {
   
   const handlePrediction = () => {
     setLoading(true);
-    sessionStorage.setItem("predicted", "true"); // Tandai bahwa user sudah melakukan prediksi
-    const randomTime = Math.floor(Math.random() * 2500) + 2500; // 2.5s - 5s delay
+    sessionStorage.setItem("predicted", "true");
+    const randomTime = Math.floor(Math.random() * 2500) + 2500; 
     setTimeout(() => {
       window.location.href = '/page-2';
     }, randomTime);
@@ -35,10 +35,9 @@ export default function Footer() {
           <button>HISTORICAL ALARM</button>
         </div>
         
-        {/* Tombol Mulai Prediksi */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <button 
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600"
+            className="bg-blue-800 text-white px-6 py-2 rounded-sm shadow-md hover:bg-blue-600"
             onClick={handlePrediction}
             disabled={loading}
           >
