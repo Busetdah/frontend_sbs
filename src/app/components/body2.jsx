@@ -79,7 +79,7 @@ export default function Body2() {
         </div>
         <div className="custom-size-pressure absolute flex flex-col items-center gray-custom rounded-sm text-monitoring-custom z-20" style={{ bottom: "7%", left: "10%" }}>
             <div className="flex items-center">
-                <img src="/ctq1.png" alt="CTQ" className="custom-logo-pressure" />
+                <img src="/ctqsatu.png" alt="CTQ" className="custom-logo-pressure" />
                 <div className="bg-gray-800 p-3 rounded-sm flex flex-col items-center text-white">
                     <h2 className="font-bold text-center">Variable CTQ</h2>
                     <div className="font-bold text-green-400">{variableCtq1.pressure} Psi</div>
@@ -107,7 +107,7 @@ export default function Body2() {
         </div>
         <div className="absolute text-monitoring-custom custom-size-pressure flex flex-col items-center gray-custom rounded-sm" style={{ bottom: "20vh", left: "40vw" }}>
             <div className="flex items-center">
-                <img src="/ctq2.png" alt="CTQ" className="custom-logo-pressure" />
+                <img src="/ctqdua.png" alt="CTQ" className="custom-logo-pressure" />
                 <div className="bg-gray-800 p-3 rounded-sm flex flex-col items-center text-white">
                     <h2 className="font-bold text-center">Variable CTQ</h2>
                     <div className="font-bold text-green-400">{variableCtq2.gatevalve} ms</div>
