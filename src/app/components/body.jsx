@@ -61,7 +61,7 @@ export default function body() {
     useEffect(() => {
         const updateDimensions = () => {
           const newWidth = window.innerWidth * 0.2;
-          const newHeight = window.innerHeight * 0.19;
+          const newHeight = window.innerHeight * 0.18;
           setDimensions({
             width: newWidth,
             height: newHeight,
@@ -139,9 +139,9 @@ export default function body() {
                 <line x1="9vw" y1="23vh" x2="6vw" y2="23vh" stroke="black" strokeWidth="3" />
             </svg>
         </div>
-        <div className="absolute" style={{ top: '2vh', right: '25vw' }}>
+        <div className="absolute" style={{ top: '2vh', right: '22vw' }}>
             <svg width="26vw" height="4vh">
-                <line x1="100vw" y1="2vh" x2="0vw" y2="2vh" stroke="black" strokeWidth="3" />
+                <line x1="22vw" y1="2vh" x2="0vw" y2="2vh" stroke="black" strokeWidth="3" />
             </svg>
         </div>
         <div className="custom-placing text-center justify-center absolute z-99">
@@ -217,15 +217,15 @@ export default function body() {
         <div className="absolute z-1" style={{ top: '33vh', left: '5vw' }}>
             <svg width="40vw" height="24vh">
                 <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="3.85vh" stroke="black" strokeWidth="3" />
-                <line x1="4.8vw" y1="4vh" x2="21.1vw" y2="4vh" stroke="black" strokeWidth="3" />
-                <line x1="21vw" y1="4vh" x2="21vw" y2="0vh" stroke="black" strokeWidth="3" />
+                <line x1="4.8vw" y1="4vh" x2="23.1vw" y2="4vh" stroke="black" strokeWidth="3" />
+                <line x1="23vw" y1="4vh" x2="23vw" y2="0vh" stroke="black" strokeWidth="3" />
 
                 <line x1="11.5vw" y1="23vh" x2="11.5vw" y2="7.85vh" stroke="black" strokeWidth="3" />
-                <line x1="11.5vw" y1="8vh" x2="34.55vw" y2="8vh" stroke="black" strokeWidth="3" />
-                <line x1="34.5vw" y1="8vh" x2="34.5vw" y2="0vh" stroke="black" strokeWidth="3" />
+                <line x1="11.5vw" y1="8vh" x2="36.1vw" y2="8vh" stroke="black" strokeWidth="3" />
+                <line x1="36vw" y1="8vh" x2="36vw" y2="0vh" stroke="black" strokeWidth="3" />
             </svg>
         </div>
-        <div className="absolute z-20" style={{ top: '43vh', left: '22vw' }}>
+        <div className="absolute z-20" style={{ top: '41vh', left: '22vw' }}>
             <div className="text-white text-monitoring-custom font-bold py-1 text-center">
                 SEWING MACHINE
             </div>
@@ -246,10 +246,10 @@ export default function body() {
         </div>
         <div className="absolute z-1" style={{ bottom: '17vh', left: '22vw' }}>
             <svg width="7vw" height="7vh">
-                <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="3.85vh" stroke="black" strokeWidth="3" />
+                <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="0vh" stroke="black" strokeWidth="3" />
             </svg>
         </div>
-        <div className="absolute flex flex-col justify-center" style={{ top: '43vh', left: '35%' }}>
+        <div className="absolute flex flex-col justify-center z-20" style={{ top: '41vh', left: '34vw' }}>
             <div className="text-white text-monitoring-custom font-bold py-1 text-center">
                 EARLY WARNING SYSTEM (EWS)
             </div>
@@ -268,7 +268,12 @@ export default function body() {
                 </div>
             </div>
         </div>
-        <div className="absolute text-center" style={{ top: '35vh', right: '28vw' }}>
+        <div className="absolute z-1" style={{ bottom: '17vh', left: '34vw' }}>
+            <svg width="7vw" height="7vh">
+                <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="0vh" stroke="black" strokeWidth="3" />
+            </svg>
+        </div>
+        <div className="absolute text-cente z-20" style={{ bottom: '22vh', right: '28vw' }}>
             <span className="text-white text-monitoring-custom font-bold py-1 text-center block">Quality Check</span>
             <div className="bg-white shadow-md gray-custom p-3 flex flex-col items-center">
                 <div className="flex items-center">
@@ -288,7 +293,12 @@ export default function body() {
                 </div>
             </div>
         </div>
-        <div className="absolute gray-custom shadow-md p-1 text-center" style={{ top: '40vh', right: '5%' }}>
+        <div className="absolute z-1" style={{ bottom: '17vh', right: '34.5vw' }}>
+            <svg width="7vw" height="7vh">
+                <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="0vh" stroke="black" strokeWidth="3" />
+            </svg>
+        </div>
+        <div className="absolute gray-custom shadow-md p-1 text-center z-20" style={{ top: '40vh', right: '5vw' }}>
             <div className="bg-black text-white px-3 py-2 text-monitoring-custom">
                 <p className="font-bold">COUNTER TOTAL</p>
                 <p className="text-green-400 text-custom-pressure font-bold">88888 bag</p>
@@ -297,6 +307,11 @@ export default function body() {
                 <p className="font-bold">PERFORMANCE</p>
                 <p className="text-green-400 text-custom-pressure font-bold">88888 bag/menit</p>
             </div>
+        </div>
+        <div className="absolute z-1" style={{ bottom: '17vh', right: '9vw' }}>
+            <svg width="7vw" height="7vh">
+                <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="0vh" stroke="black" strokeWidth="3" />
+            </svg>
         </div>
         <div className="conveyor-closing absolute z-20" style={{ bottom: '15%', left: '5%' }}>
             <div className="belt">

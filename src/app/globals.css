@@ -130,8 +130,8 @@ body {
   font-size: 25px;
   font-weight: bold;
   position: absolute;
-  top: 33%;
-  left: 50%;
+  top: 26.2%;
+  left: 52%;
   transform: translate(-50%, -50%);
 }
 
@@ -229,6 +229,7 @@ button{
 .custom-hopper2{
   top: 4%;
   left: 23%;
+  z-index: 99;
 }
 
 .custom-hopper-image{

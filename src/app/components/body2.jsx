@@ -71,13 +71,13 @@ export default function Body2() {
         <div className="absolute solenoid-valve">
             <img className="solenoid-valve-image" src="/sol_val.png"/>
         </div>
-        <div className="absolute kodrum">
+        <div className="absolute kodrum z-20">
             <img className="kodrum-image" src="/kodrum.png"/>
         </div>
-        <div className="absolute custom-hopper2">
+        <div className="absolute custom-hopper2 z-24">
             <img className="custom-hopper-image" src="/hopper-2.png"></img>
         </div>
-        <div className="custom-size-pressure absolute flex flex-col items-center gray-custom rounded-sm text-monitoring-custom" style={{ bottom: "7%", left: "10%" }}>
+        <div className="custom-size-pressure absolute flex flex-col items-center gray-custom rounded-sm text-monitoring-custom z-20" style={{ bottom: "7%", left: "10%" }}>
             <div className="flex items-center">
                 <img src="/ctq1.png" alt="CTQ" className="custom-logo-pressure" />
                 <div className="bg-gray-800 p-3 rounded-sm flex flex-col items-center text-white">
@@ -100,7 +100,12 @@ export default function Body2() {
                 </div>
             </div>
         </div>
-        <div className="absolute text-monitoring-custom custom-size-pressure flex flex-col items-center gray-custom rounded-sm" style={{ bottom: "30%", left: "48%" }}>
+        <div className="absolute z-1" style={{ bottom: '20vh', left: '18.5vw' }}>
+            <svg width="7vw" height="20vh">
+                <line x1="4.8vw" y1="23vh" x2="4.8vw" y2="0vh" stroke="black" strokeWidth="3" />
+            </svg>
+        </div>
+        <div className="absolute text-monitoring-custom custom-size-pressure flex flex-col items-center gray-custom rounded-sm" style={{ bottom: "20vh", left: "40vw" }}>
             <div className="flex items-center">
                 <img src="/ctq2.png" alt="CTQ" className="custom-logo-pressure" />
                 <div className="bg-gray-800 p-3 rounded-sm flex flex-col items-center text-white">
@@ -123,7 +128,12 @@ export default function Body2() {
                 </div>
             </div>
         </div>
-        <div className="absolute text-monitoring-custom custom-size-weight gray-custom border border-white text-gray-800" style={{ bottom: "30%", right: "10%" }}>
+        <div className="absolute z-1" style={{ bottom: '10vh', left: '30vw' }}>
+            <svg width="20vw" height="20vh">
+                <line x1="2vw" y1="3vh" x2="10vw" y2="3vh" stroke="black" strokeWidth="3" />
+            </svg>
+        </div>
+        <div className="absolute text-monitoring-custom custom-size-weight gray-custom border border-white text-gray-800 z-20" style={{ bottom: "30%", right: "10%" }}>
             <div className="bg-gray-800 p-3 rounded-sm mt-2 flex flex-col items-center">
             <h2 className="font-bold text-center text-white">Variable CTQ</h2>
                 <div className="font-bold text-green-400">{variableCtq3.predictedWeight} kg</div>
@@ -157,6 +167,11 @@ export default function Body2() {
                     <span className="plus-sign">+</span>
                 </div>
             </div>
+        </div>
+        <div className="absolute z-1" style={{ bottom: '10vh', right: '15vw' }}>
+            <svg width="5vw" height="20vh">
+                <line x1="2vw" y1="3vh" x2="2vw" y2="15vh" stroke="black" strokeWidth="3" />
+            </svg>
         </div>
         <div className="flex absolute motor-m713d-page2 items-center w-fit">
             <img src="/motor.png" className="custom-motor-height object-cover" />
