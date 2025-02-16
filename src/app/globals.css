@@ -190,7 +190,7 @@ body {
 
 .motor-m713d-page2{
   bottom: 3.5vh;
-  right: 25%;
+  right: 20vw;
 }
 
 .motor-m714d{
@@ -263,7 +263,7 @@ button{
 }
 
 .text-monitoring-custom{
-  font-size: 1vw;
+  font-size: 1.2vw;
 }
 
 .text-custom-logo{
@@ -308,4 +308,32 @@ button{
 .custom-motor-height{
   width: 2vw;
   height: auto;
+}
+
+.custom-logo-pressure{
+  width: 4vw;
+  height: 7.5vh;
+}
+
+.custom-size-pressure{
+  padding-left: 0.7vw;
+  padding-right: 1vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.custom-size-weight{
+  width: 15vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.tabel-custom{
+  z-index: 4;
+}
+
+.footer-2-custom{
+  z-index: 99;
 }

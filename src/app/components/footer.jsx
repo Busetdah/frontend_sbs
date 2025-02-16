@@ -28,8 +28,8 @@ export default function Footer() {
         </div>
       )}
       
-      <div className="bg-grey footer-height flex justify-between text-monitoring-custom items-center p-4 z-40">
-        <div className="ml-4 space-x-3">
+      <div className="bg-grey footer-height flex justify-between text-monitoring-custom items-center p-2 z-40">
+        <div className="space-x-2">
         <Link href="/realtime">
           <button>REAL TIME TREND</button>
         </Link>

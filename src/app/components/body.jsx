@@ -268,7 +268,7 @@ export default function body() {
                 </div>
             </div>
         </div>
-        <div className="absolute text-center" style={{ top: '35vh', right: '30%' }}>
+        <div className="absolute text-center" style={{ top: '35vh', right: '28vw' }}>
             <span className="text-white text-monitoring-custom font-bold py-1 text-center block">Quality Check</span>
             <div className="bg-white shadow-md gray-custom p-3 flex flex-col items-center">
                 <div className="flex items-center">

@@ -77,80 +77,68 @@ export default function Body2() {
         <div className="absolute custom-hopper2">
             <img className="custom-hopper-image" src="/hopper-2.png"></img>
         </div>
-        <div className="absolute w-52 p-2 flex items-center gray-custom rounded-sm text-monitoring-custom" style={{bottom: "7%", left: "10%",}}>
-            <img src="/ctq1.png" alt="CTQ" className="w-8 h-18 mr-2" />
-            <div className="flex-1 text-gray-800">
-                <h2 className="font-bold text-center">Variable CTQ</h2>
-                <div className="bg-gray-800 p-1 rounded-sm mt-2 flex flex-col items-center">
+        <div className="custom-size-pressure absolute flex flex-col items-center gray-custom rounded-sm text-monitoring-custom" style={{ bottom: "7%", left: "10%" }}>
+            <div className="flex items-center">
+                <img src="/ctq1.png" alt="CTQ" className="custom-logo-pressure" />
+                <div className="bg-gray-800 p-3 rounded-sm flex flex-col items-center text-white">
+                    <h2 className="font-bold text-center">Variable CTQ</h2>
                     <div className="font-bold text-green-400">{variableCtq1.pressure} Psi</div>
                 </div>
-                <div className="flex justify-around mt-4">
+            </div>
+            <div className="flex justify-around w-full mt-3">
                 <div className="flex flex-col items-center">
-                    <div
-                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
-                    ></div>
+                    <div className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}></div>
                     <span className="text-green-700 font-semibold">LOW</span>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div
-                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
-                    ></div>
+                    <div className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}></div>
                     <span className="text-yellow-700 font-semibold">NORMAL</span>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div
-                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
-                    ></div>
+                    <div className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}></div>
                     <span className="text-red-700 font-semibold">OVER</span>
-                    </div>
                 </div>
             </div>
         </div>
-        <div className="absolute w-52 p-2 flex items-center gray-custom rounded-sm" style={{bottom: "30%", left: "48%",}}>
-            <img src="/ctq2.png" alt="CTQ" className="w-8 h-18 mr-2" />
-            <div className="flex-1 text-gray-800">
-                <h2 className="text-sm font-bold text-center">Variable CTQ</h2>
-                <div className="bg-gray-800 p-1 rounded-sm mt-2 flex flex-col items-center">
-                    <div className="text-sm font-bold text-green-400">{variableCtq2.gatevalve} ms</div>
+        <div className="absolute text-monitoring-custom custom-size-pressure flex flex-col items-center gray-custom rounded-sm" style={{ bottom: "30%", left: "48%" }}>
+            <div className="flex items-center">
+                <img src="/ctq2.png" alt="CTQ" className="custom-logo-pressure" />
+                <div className="bg-gray-800 p-3 rounded-sm flex flex-col items-center text-white">
+                    <h2 className="font-bold text-center">Variable CTQ</h2>
+                    <div className="font-bold text-green-400">{variableCtq2.gatevalve} ms</div>
                 </div>
-                <div className="flex justify-around mt-4">
+            </div>
+            <div className="flex justify-around w-full mt-3">
                 <div className="flex flex-col items-center">
-                    <div
-                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
-                    ></div>
-                    <span className="text-green-700 text-sm font-semibold">LOW</span>
-                </div>
-                <div className="flex flex-col items-center">
-                    <div
-                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
-                    ></div>
-                    <span className="text-yellow-700 text-sm font-semibold">NORMAL</span>
+                    <div className={`custom-indicator border border-white rounded-sm ${variableCtq2.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}></div>
+                    <span className="text-green-700 font-semibold">LOW</span>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div
-                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
-                    ></div>
-                    <span className="text-red-700 text-sm font-semibold">OVER</span>
-                    </div>
+                    <div className={`custom-indicator border border-white rounded-sm ${variableCtq2.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}></div>
+                    <span className="text-yellow-700 font-semibold">NORMAL</span>
+                </div>
+                <div className="flex flex-col items-center">
+                    <div className={`custom-indicator border border-white rounded-sm ${variableCtq2.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}></div>
+                    <span className="text-red-700 font-semibold">OVER</span>
                 </div>
             </div>
         </div>
-        <div className="absolute w-60 p-2 gray-custom border border-white text-gray-800" style={{ bottom: "30%", right: "10%" }}>
-            <h2 className="text-lg font-bold text-center">Variable CTQ</h2>
-            <div className="bg-gray-800  p-3 rounded-sm mt-2 flex flex-col items-center">
-                <div className="text-2xl font-bold text-green-400">{variableCtq3.predictedWeight} kg</div>
+        <div className="absolute text-monitoring-custom custom-size-weight gray-custom border border-white text-gray-800" style={{ bottom: "30%", right: "10%" }}>
+            <div className="bg-gray-800 p-3 rounded-sm mt-2 flex flex-col items-center">
+            <h2 className="font-bold text-center text-white">Variable CTQ</h2>
+                <div className="font-bold text-green-400">{variableCtq3.predictedWeight} kg</div>
             </div>
-            <div className="flex justify-between mt-3 px-2 text-sm">
+            <div className="flex justify-between mt-3">
                 <div className="flex items-center">
-                <div className={`custom-indicator border border-white mr-2 ${variableCtq3.statusSpec === "ONSPEC" ? "bg-green-500" : "bg-gray-500"}`}></div>
+                <div className={`custom-indicator border border-white mr-1 ${variableCtq3.statusSpec === "ONSPEC" ? "bg-green-500" : "bg-gray-500"}`}></div>
                 <span className="font-semibold text-green-600">ONSPEC</span>
                 </div>
                 <div className="flex items-center">
-                <div className={`custom-indicator border border-white mr-2 ${variableCtq3.statusSpec === "OFFSPEC" ? "bg-red-500" : "bg-gray-500"}`}></div>
+                <div className={`custom-indicator border border-white mr-1 ${variableCtq3.statusSpec === "OFFSPEC" ? "bg-red-500" : "bg-gray-500"}`}></div>
                 <span className="font-semibold text-red-600">OFFSPEC</span>
                 </div>
             </div>
-            <div className="mt-2 text-sm text-gray-800">
+            <div className="mt-2 text-gray-800">
                 <p>On Spec: <span className="font-bold">{variableCtq3.onspec} bag</span></p>
                 <p>Off Spec: <span className="font-bold">{variableCtq3.offspec} bag</span></p>
             </div>
@@ -172,9 +160,9 @@ export default function Body2() {
         </div>
         <div className="flex absolute motor-m713d-page2 items-center w-fit">
             <img src="/motor.png" className="custom-motor-height object-cover" />
-            <div className="ml-2 flex flex-col">
-                <span className="text-white font-bold text-lg">M713D</span>
-                <span className="text-green-400 font-semibold text-lg">88.8 A</span>
+            <div className="ml-2 flex flex-col text-monitoring-custom">
+                <span className="text-white font-bold">M713D</span>
+                <span className="text-green-400 font-semibold">88.8 A</span>
             </div>
         </div>
     </div>
