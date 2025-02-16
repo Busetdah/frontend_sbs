@@ -22,16 +22,20 @@ export default function Footer() {
     <div className="relative z-99">
       {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col justify-center items-center z-50">
-          <FaSearch className="text-yellow-400 text-7xl animate-pulse drop-shadow-lg mb-4" />
+          <FaSearch className="text-blue-400 text-7xl animate-pulse drop-shadow-lg mb-4" />
           <AiOutlineLoading3Quarters className="text-blue-300 text-6xl animate-spin mb-4" />
-          <div className="text-white text-2xl">Scanning Data...</div>
+          <div className="text-white text-2xl">Predicting Data...</div>
         </div>
       )}
       
-      <div className="bg-grey footer-height flex justify-between items-center p-4 z-40">
+      <div className="bg-grey footer-height flex justify-between text-monitoring-custom items-center p-4 z-40">
         <div className="ml-4 space-x-3">
+        <Link href="/realtime">
           <button>REAL TIME TREND</button>
+        </Link>
+        <Link href="/history">
           <button>HISTORICAL TREND</button>
+          </Link>
           <button>HISTORICAL ALARM</button>
         </div>
         

@@ -33,10 +33,10 @@ export default function Header() {
         <div className="bg-grey custom-height-header text-white">
             <div className="flex items-center justify-between px-4 py-1/2">
                 <div className="flex items-center space-x-4">
-                    <img src="/PetroLogo.png" className="h-16 w-auto" />
+                    <img src="/PetroLogo.png" className="logo-custom" />
                 </div>
-                <h1 className="text-4xl font-bold">SMART BAGGING SYSTEM</h1>
-                <img src="/pergudangan.png" className="h-16 w-auto" />
+                <h1 className="text-judul font-bold">SMART BAGGING SYSTEM</h1>
+                <img src="/pergudangan.png" className="logo-custom" />
             </div>
             <div className="border-t-2 border-black"></div>
             <div className="flex items-center text-center justify-between bg-grey px-4 py-1 text-sm">

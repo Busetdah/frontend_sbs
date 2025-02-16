@@ -6,65 +6,65 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Body2() {
 
     const [authorized, setAuthorized] = useState(false);
-  const [variableCtq1, setVariableCtq1] = useState({ pressure: 0, status: "NORMAL" });
-  const [variableCtq2, setVariableCtq2] = useState({ gatevalve: 0, status: "NORMAL" });
-  const [variableCtq3, setVariableCtq3] = useState({ predictedWeight: 0, offspec: 0, onspec: 0 });
+    const [variableCtq1, setVariableCtq1] = useState({ pressure: 0, status: "NORMAL" });
+    const [variableCtq2, setVariableCtq2] = useState({ gatevalve: 0, status: "NORMAL" });
+    const [variableCtq3, setVariableCtq3] = useState({ predictedWeight: 0, offspec: 0, onspec: 0 });
 
-  useEffect(() => {
-    const hasPredicted = sessionStorage.getItem("predicted");
-    if (!hasPredicted) {
-      window.location.href = "/";
-    } else {
-      setAuthorized(true);
-      sessionStorage.removeItem("predicted");
-    }
-  }, []);
-
-  const useSSE = (url, setData, thresholdLow, thresholdHigh) => {
     useEffect(() => {
-      if (!authorized) return;
-      
-      const eventSource = new EventSource(`${API_URL}${url}`);
-  
-      eventSource.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (url === "/api/variablectq1") {
-            const pressure = data?.pressure || 0;
-            const status = pressure < thresholdLow ? "LOW" : pressure > thresholdHigh ? "OVER" : "NORMAL";
-            setData({ pressure, status });
-          } else if (url === "/api/variablectq2") {
-            const gatevalve = data?.gatevalve || 0;
-            const status = gatevalve < thresholdLow ? "LOW" : gatevalve > thresholdHigh ? "OVER" : "NORMAL";
-            setData({ gatevalve, status });
-          } else if (url === "/api/variablectq3") {
-            const predictedWeight = data?.predicted_weight?.predicted_weight || 0;
-            const offspec = data?.status_counts?.offspec || 0;
-            const onspec = data?.status_counts?.onspec || 0;
-            const statusSpec = data?.predicted_weight?.status === "ONSPEC" ? "ONSPEC" : "OFFSPEC";
-            setData({ predictedWeight, offspec, onspec, statusSpec });
-          }
-        } catch (error) {
-          console.error(`Error parsing SSE data from ${url}:`, error);
-        }
-      };
-  
-      eventSource.onerror = () => {
-        console.error(`SSE connection error for ${url}, closing connection.`);
-        eventSource.close();
-      };
-  
-      return () => {
-        eventSource.close();
-      };
-    }, [authorized]);
-  };
-  
-  useSSE("/api/variablectq1", setVariableCtq1, 9, 10);
-  useSSE("/api/variablectq2", setVariableCtq2, 0.04, 0.05);
-  useSSE("/api/variablectq3", setVariableCtq3, 40, 80);
+      const hasPredicted = sessionStorage.getItem("predicted");
+      if (!hasPredicted) {
+        window.location.href = "/";
+      } else {
+        setAuthorized(true);
+        sessionStorage.removeItem("predicted");
+      }
+    }, []);
 
-  if (!authorized) return null;
+    const useSSE = (url, setData, thresholdLow, thresholdHigh) => {
+      useEffect(() => {
+        if (!authorized) return;
+        
+        const eventSource = new EventSource(`${API_URL}${url}`);
+    
+        eventSource.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            if (url === "/api/variablectq1") {
+              const pressure = data?.pressure || 0;
+              const status = pressure < thresholdLow ? "LOW" : pressure > thresholdHigh ? "OVER" : "NORMAL";
+              setData({ pressure, status });
+            } else if (url === "/api/variablectq2") {
+              const gatevalve = data?.gatevalve || 0;
+              const status = gatevalve < thresholdLow ? "LOW" : gatevalve > thresholdHigh ? "OVER" : "NORMAL";
+              setData({ gatevalve, status });
+            } else if (url === "/api/variablectq3") {
+              const predictedWeight = data?.predicted_weight?.predicted_weight || 0;
+              const offspec = data?.status_counts?.offspec || 0;
+              const onspec = data?.status_counts?.onspec || 0;
+              const statusSpec = data?.predicted_weight?.status === "ONSPEC" ? "ONSPEC" : "OFFSPEC";
+              setData({ predictedWeight, offspec, onspec, statusSpec });
+            }
+          } catch (error) {
+            console.error(`Error parsing SSE data from ${url}:`, error);
+          }
+        };
+    
+        eventSource.onerror = () => {
+          console.error(`SSE connection error for ${url}, closing connection.`);
+          eventSource.close();
+        };
+    
+        return () => {
+          eventSource.close();
+        };
+      }, [authorized]);
+    };
+    
+    useSSE("/api/variablectq1", setVariableCtq1, 9, 10);
+    useSSE("/api/variablectq2", setVariableCtq2, 0.04, 0.05);
+    useSSE("/api/variablectq3", setVariableCtq3, 40, 80);
+
+    if (!authorized) return null;
 
     return (
     <div className="custom-height bg-blue py-1 relative">
@@ -75,33 +75,33 @@ export default function Body2() {
             <img className="kodrum-image" src="/kodrum.png"/>
         </div>
         <div className="absolute custom-hopper2">
-            <img src="/hopper-2.png"></img>
+            <img className="custom-hopper-image" src="/hopper-2.png"></img>
         </div>
-        <div className="absolute w-52 p-2 flex items-center gray-custom rounded-sm" style={{bottom: "7%", left: "10%",}}>
+        <div className="absolute w-52 p-2 flex items-center gray-custom rounded-sm text-monitoring-custom" style={{bottom: "7%", left: "10%",}}>
             <img src="/ctq1.png" alt="CTQ" className="w-8 h-18 mr-2" />
             <div className="flex-1 text-gray-800">
-                <h2 className="text-sm font-bold text-center">Variable CTQ</h2>
+                <h2 className="font-bold text-center">Variable CTQ</h2>
                 <div className="bg-gray-800 p-1 rounded-sm mt-2 flex flex-col items-center">
-                    <div className="text-sm font-bold text-green-400">{variableCtq1.pressure} Psi</div>
+                    <div className="font-bold text-green-400">{variableCtq1.pressure} Psi</div>
                 </div>
                 <div className="flex justify-around mt-4">
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
+                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
                     ></div>
-                    <span className="text-green-700 text-sm font-semibold">LOW</span>
+                    <span className="text-green-700 font-semibold">LOW</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
+                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
                     ></div>
-                    <span className="text-yellow-700 text-sm font-semibold">NORMAL</span>
+                    <span className="text-yellow-700 font-semibold">NORMAL</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
+                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
                     ></div>
-                    <span className="text-red-700 text-sm font-semibold">OVER</span>
+                    <span className="text-red-700 font-semibold">OVER</span>
                     </div>
                 </div>
             </div>
@@ -111,24 +111,24 @@ export default function Body2() {
             <div className="flex-1 text-gray-800">
                 <h2 className="text-sm font-bold text-center">Variable CTQ</h2>
                 <div className="bg-gray-800 p-1 rounded-sm mt-2 flex flex-col items-center">
-                    <div className="text-sm font-bold text-green-400">{variableCtq2.gatevalve} Psi</div>
+                    <div className="text-sm font-bold text-green-400">{variableCtq2.gatevalve} ms</div>
                 </div>
                 <div className="flex justify-around mt-4">
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
+                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "LOW" ? "bg-green-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-green-700 text-sm font-semibold">LOW</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
+                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "NORMAL" ? "bg-yellow-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-yellow-700 text-sm font-semibold">NORMAL</span>
                 </div>
                 <div className="flex flex-col items-center">
                     <div
-                    className={`w-4 h-4 border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
+                    className={`custom-indicator border border-white rounded-sm ${variableCtq1.status === "OVER" ? "bg-red-500" : "bg-gray-500"}`}
                     ></div>
                     <span className="text-red-700 text-sm font-semibold">OVER</span>
                     </div>
@@ -142,11 +142,11 @@ export default function Body2() {
             </div>
             <div className="flex justify-between mt-3 px-2 text-sm">
                 <div className="flex items-center">
-                <div className={`w-4 h-4 border border-white mr-2 ${variableCtq3.statusSpec === "ONSPEC" ? "bg-green-500" : "bg-gray-500"}`}></div>
+                <div className={`custom-indicator border border-white mr-2 ${variableCtq3.statusSpec === "ONSPEC" ? "bg-green-500" : "bg-gray-500"}`}></div>
                 <span className="font-semibold text-green-600">ONSPEC</span>
                 </div>
                 <div className="flex items-center">
-                <div className={`w-4 h-4 border border-white mr-2 ${variableCtq3.statusSpec === "OFFSPEC" ? "bg-red-500" : "bg-gray-500"}`}></div>
+                <div className={`custom-indicator border border-white mr-2 ${variableCtq3.statusSpec === "OFFSPEC" ? "bg-red-500" : "bg-gray-500"}`}></div>
                 <span className="font-semibold text-red-600">OFFSPEC</span>
                 </div>
             </div>
@@ -168,6 +168,13 @@ export default function Body2() {
                 <div className="inner-wheel">
                     <span className="plus-sign">+</span>
                 </div>
+            </div>
+        </div>
+        <div className="flex absolute motor-m713d-page2 items-center w-fit">
+            <img src="/motor.png" className="custom-motor-height object-cover" />
+            <div className="ml-2 flex flex-col">
+                <span className="text-white font-bold text-lg">M713D</span>
+                <span className="text-green-400 font-semibold text-lg">88.8 A</span>
             </div>
         </div>
     </div>

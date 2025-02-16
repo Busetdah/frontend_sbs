@@ -9,6 +9,12 @@
   --blue      : #0e2d88;
 }
 
+html,
+body {
+  overscroll-behavior-x: none;
+}
+
+
 .bg-grey{
   background: var(--grey);
 }
@@ -144,46 +150,52 @@
 .belt-text {
   color: white;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.2vw;
 }
 
 .custom-placing{
-  top: 8vh;
-  right: 3vw;
+  top: 14vh;
+  right: 4vw;
 }
+
+.custom-placing-monitoring{
+  top: 1vh;
+  left: 4vw;
+}
+
 
 .rotateUp{
   rotate:calc(-90deg);
 }
 
 .motor-2379{
-  width: 30px;
   top: 20vh;
   left: 54vw;
 }
 
 .motor-m712d_1{
-  width: 30px;
-  bottom: 2%;
+  bottom: 3.5vh;
   left: 5%;
 }
 
 .motor-m712d_2{
-  width: 30px;
-  bottom: 2%;
+  bottom: 3.5vh;
   left: 32%;
 }
 
 .motor-m713d{
-  width: 30px;
-  bottom: 2%;
-  right: 46%;
+  bottom: 3.5vh;
+  right: 41.7%;
+}
+
+.motor-m713d-page2{
+  bottom: 3.5vh;
+  right: 25%;
 }
 
 .motor-m714d{
-  width: 30px;
-  bottom: 2%;
-  right: 19%;
+  bottom: 3.5vh;
+  right: 15%;
 }
 
 .custom-hopper{
@@ -195,7 +207,7 @@
 
 .hopper-detail{
   top: 60%;
-  left: 1%;
+  left: 0.7%;
   z-index: 2;
 }
 
@@ -215,44 +227,85 @@ button{
 }
 
 .custom-hopper2{
-  top: 10%;
-  left: 30%;
-  width: 240px;
+  top: 4%;
+  left: 23%;
+}
+
+.custom-hopper-image{
+  width: 15vw;
+  height: 60vh;
 }
 
 .kodrum{
-  left: 23%;
-  top: 2%;
+  left: 19vw;
+  top: 5vh;
 }
 
 .kodrum-image{
-  width: 200px;
+  width: 10.8vw;
 }
 
 .solenoid-valve{
-  top: 2%;
+  top: 4.5vh;
 }
 
 .solenoid-valve-image{
-  width: 370px;
+  width: 20vw;
 }
 
-/* .line-1{
-  right: 20%;
+.text-judul{
+  font-size: 2vw;
 }
 
-.garis-1-1{
-  background-color: #000;
-  height: 2px;
-  width: 200px;
+.logo-custom{
+  width: 8vw;
+  height: auto;
 }
 
-.garis-1-1::after{
-  content:"";
-  background-color: #000;
-  height: 200px;
-  width: 2px;
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-} */
+.text-monitoring-custom{
+  font-size: 1vw;
+}
+
+.text-custom-logo{
+  font-size: 1.8vw;
+}
+
+.text-custom-pressure{
+  font-size: 1.1vw;
+}
+
+.custom-turbo{
+  width: 2.5vw;
+  height: auto;
+}
+
+.custom-failpass{
+  width: 3.5vw;
+  height: 3.5vh;
+  padding: 2px 2px;
+}
+
+.custom-indicator{
+  width: 1vw;
+  height: 1vw;
+}
+
+.custom-logo-sewing{
+  width: 2.5vw;
+  height: 4vw;
+}
+
+.custom-logo-ews{
+  width: 4vw;
+  height: 4vw;
+}
+
+.custom-logo-qc{
+  width: 5vw;
+  height: 4vw;
+}
+
+.custom-motor-height{
+  width: 2vw;
+  height: auto;
+}
